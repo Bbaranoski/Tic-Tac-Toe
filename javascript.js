@@ -1,13 +1,12 @@
 const Gameboard = () => {
-    const gameBoard = ['x', 'o']
+    const gameBoard = ['x', 'o', '', '', '', '', '', '', '']
 
-    const board = document.querySelector('.board')
+    const test = gameBoard.forEach((e, test) => {
 
-    const test = gameBoard.forEach((e) => {
-
+        const render = document.getElementById(`${test}`)
         let marker = document.createElement('p')
         marker.textContent = e
-        board.appendChild(marker)
+        render.appendChild(marker)
 
     })
 

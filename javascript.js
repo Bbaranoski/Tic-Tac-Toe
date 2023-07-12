@@ -1,21 +1,17 @@
-const Gameboard = () => {
+const Gameboard = gai => {
     const gameBoard = ['X', 'O', '', '', '', '', '', '', '']
 
     const render = gameBoard.forEach((e, i) => {
         const test = select(i)
-        const marker = create(e)
-        test.appendChild(marker)
+        test.textContent = e
+        console.log(gameBoard)
     })
 
     function select(index) {
         return document.getElementById(`${index}`)
     }
 
-    function create(element){
-        return document.createElement('p')
-    }
-
-    return{render}
+    return{render, gameBoard}
 }
 
 const DisplayControlle = () => {

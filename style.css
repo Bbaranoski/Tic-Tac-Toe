@@ -11,7 +11,7 @@ body{
     height: 400px;
     width: 400px;
     background-color: black;
-    border: 10px solid #e2e8f0;
+    border: 15px solid #e2e8f0;
     border-radius: 20px;
     display: grid;
     gap: 20px;
@@ -21,4 +21,14 @@ body{
 
 .board > div{
     background-color: #7f1d1d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 0px;
 }

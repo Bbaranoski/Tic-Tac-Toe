@@ -1,5 +1,6 @@
 const Gameboard = (() => {
     const gameBoard = ['X', 'O', '', '', '', '', '', '', '']
+    const place = ''
 
     const render = () => {
             gameBoard.forEach((e, i) => {
@@ -17,22 +18,11 @@ const Gameboard = (() => {
         render()
     }
 
-    return{placeMarker}
+    return{placeMarker, place}
 
 })()
 
 const DisplayControlle = (() => {
-
-    const divs = document.querySelectorAll('div')
-
-    divs.forEach((div) =>{
-        
-       div.addEventListener('click', () => {
-
-        console.log(div.class)
-        
-       })
-    })
 
 })()
 
@@ -41,3 +31,14 @@ const Player = (marker) => {
     return{marker}
 
 }
+
+const divs = document.querySelectorAll('div > div')
+
+divs.forEach((div) =>{
+    
+    div.addEventListener('click', () => {
+
+        Gameboard.place = div.id
+
+   })
+})

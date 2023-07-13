@@ -1,23 +1,43 @@
-const Gameboard = gai => {
+const Gameboard = (() => {
     const gameBoard = ['X', 'O', '', '', '', '', '', '', '']
 
-    const render = gameBoard.forEach((e, i) => {
-        const test = select(i)
-        test.textContent = e
-        console.log(gameBoard)
-    })
+    const render = () => {
+            gameBoard.forEach((e, i) => {
+            const selectP = select(i)
+            selectP.textContent = e
+        })
+    }
 
-    function select(index) {
+    const select = (index) => {
         return document.getElementById(`${index}`)
     }
 
-    return{render, gameBoard}
-}
+    const placeMarker = (place, marker) =>{
+        gameBoard[place] = marker
+        render()
+    }
 
-const DisplayControlle = () => {
-
-}
-
-const Player = (() => {
+    return{placeMarker}
 
 })()
+
+const DisplayControlle = (() => {
+
+    const divs = document.querySelectorAll('div')
+
+    divs.forEach((div) =>{
+        
+       div.addEventListener('click', () => {
+
+        console.log(div.class)
+        
+       })
+    })
+
+})()
+
+const Player = (marker) => {
+
+    return{marker}
+
+}

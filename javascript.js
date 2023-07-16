@@ -1,9 +1,22 @@
 const Gameboard = (() => {
-    const gameBoard = ['', '', '', '', '', '', '', '', '']
+    const gameBoard = []
 
     const placeMarker = (place, marker) =>{
+
         gameBoard[place] = marker
         render()
+        //horizontal win
+        winCondition(gameBoard[0], gameBoard[1], gameBoard[2])
+        winCondition(gameBoard[3], gameBoard[4], gameBoard[5])
+        winCondition(gameBoard[6], gameBoard[7], gameBoard[8])
+        //vertical win
+        winCondition(gameBoard[0], gameBoard[3], gameBoard[6])
+        winCondition(gameBoard[1], gameBoard[4], gameBoard[7])
+        winCondition(gameBoard[2], gameBoard[5], gameBoard[8])
+        // diagonal win
+        winCondition(gameBoard[0], gameBoard[4], gameBoard[8])
+        winCondition(gameBoard[2], gameBoard[4], gameBoard[6])
+
     }
 
     const render = () => {
@@ -11,7 +24,6 @@ const Gameboard = (() => {
 
             const selectP = select(i)
             selectP.textContent = e
-            winCondition()
 
         })
     }
@@ -20,7 +32,13 @@ const Gameboard = (() => {
         return document.getElementById(`${index}`)
     }
 
-    const winCondition = () =>{
+    const winCondition = (one, two, three) =>{
+
+        if(one == two && one == three && one == playerOne.marker){
+            console.log(playerOne.marker)
+        }else if(one == two && one == three && one == playerTwo.marker){
+            console.log(playerTwo.marker)
+        }
 
     }
 
@@ -36,16 +54,16 @@ const DisplayControlle = (() => {
     divs.forEach((div) =>{  
         div.addEventListener('click', () => {
 
-            if(turnOne == true && div.className != 'marked'){
+            if(turnOne == true && div.id != 'marked'){
 
                 Gameboard.placeMarker(div.className, playerOne.marker)
-                div.className = 'marked'
+                div.id = 'marked'
                 turnOne = false
 
-            }else if(div.className != 'marked'){
+            }else if(div.id != 'marked'){
 
                 Gameboard.placeMarker(div.className, playerTwo.marker)
-                div.className = 'marked'
+                div.id = 'marked'
                 turnOne = true
 
             }   

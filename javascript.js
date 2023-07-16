@@ -1,6 +1,5 @@
 const Gameboard = (() => {
     const gameBoard = ['', '', '', '', '', '', '', '', '']
-    const place = ''
 
     const render = () => {
             gameBoard.forEach((e, i) => {
@@ -18,7 +17,7 @@ const Gameboard = (() => {
         render()
     }
 
-    return{placeMarker, place}
+    return{placeMarker}
 
 })()
 
@@ -31,14 +30,16 @@ const DisplayControlle = (() => {
         
         div.addEventListener('click', () => {
 
-            if(turnOne == true){
+            if(turnOne == true && div.className != 'marked'){
     
                 Gameboard.placeMarker(div.className, playerOne.marker)
+                div.className = 'marked'
                 turnOne = false
 
-            }else{
+            }else if(div.className != 'marked'){
                 
                 Gameboard.placeMarker(div.className, playerTwo.marker)
+                div.className = 'marked'
                 turnOne = true
 
             }   

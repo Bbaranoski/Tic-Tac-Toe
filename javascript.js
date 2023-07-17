@@ -1,5 +1,5 @@
 const Gameboard = (() => {
-    const gameBoard = []
+    let gameBoard = []
 
     const placeMarker = (place, marker) =>{
 
@@ -21,10 +21,8 @@ const Gameboard = (() => {
 
     const render = () => {
         gameBoard.forEach((e, i) => {
-
             const selectP = select(i)
             selectP.textContent = e
-
         })
     }
 
@@ -42,14 +40,24 @@ const Gameboard = (() => {
 
     }
 
-    return{placeMarker}
+    const restart = () => {
+
+        gameBoard.forEach((e, i) => {
+            const selectP = select(i)
+            selectP.textContent = ""
+        })
+        gameBoard.splice(0, 8)
+    }
+
+    return{placeMarker, restart}
 
 })()
 
 const DisplayControlle = (() => {
 
     let turnOne = true
-    const divs = document.querySelectorAll('div > div')
+    const divs = document.querySelectorAll('div > div > div')
+    const restart = document.querySelector("#restart")
 
     divs.forEach((div) =>{  
         div.addEventListener('click', () => {
@@ -68,6 +76,12 @@ const DisplayControlle = (() => {
 
             }   
        }) 
+    })
+
+    restart.addEventListener('click', () =>{
+        divs.id = ""
+        Gameboard.restart()
+        turnOne = true
     })
 
 })()

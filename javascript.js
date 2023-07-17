@@ -33,9 +33,15 @@ const Gameboard = (() => {
     const winCondition = (one, two, three) =>{
 
         if(one == two && one == three && one == playerOne.marker){
-            console.log(playerOne.marker)
+
+            alert('The winner is ' + playerOne.marker)
+            DisplayControlle.gameover()
+
         }else if(one == two && one == three && one == playerTwo.marker){
-            console.log(playerTwo.marker)
+
+            alert('The winner is ' + playerTwo.marker)
+            DisplayControlle.gameover()
+
         }
 
     }
@@ -47,6 +53,7 @@ const Gameboard = (() => {
             selectP.textContent = ""
         })
         gameBoard.splice(0, 8)
+
     }
 
     return{placeMarker, restart}
@@ -64,29 +71,38 @@ const DisplayControlle = (() => {
 
             if(turnOne == true && div.id != 'marked'){
 
-                Gameboard.placeMarker(div.className, playerOne.marker)
                 div.id = 'marked'
                 turnOne = false
+                Gameboard.placeMarker(div.className, playerOne.marker)
 
             }else if(div.id != 'marked'){
 
-                Gameboard.placeMarker(div.className, playerTwo.marker)
                 div.id = 'marked'
                 turnOne = true
+                Gameboard.placeMarker(div.className, playerTwo.marker)
 
             }   
        }) 
     })
 
-    restart.addEventListener('click', () =>{
-
+    const restartDisplay = () => {
         divs.forEach((div) => {
             div.id = ""
         })
-        Gameboard.restart()
         turnOne = true
-        
+    }
+
+    restart.addEventListener('click', () =>{
+        restartDisplay()
+        Gameboard.restart()    
     })
+
+    const gameover = () =>{
+        divs.forEach((div) => {
+            div.id = 'marked'
+        })
+    }
+    return{gameover}
 
 })()
 

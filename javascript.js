@@ -79,9 +79,13 @@ const DisplayControlle = (() => {
     })
 
     restart.addEventListener('click', () =>{
-        divs.id = ""
+
+        divs.forEach((div) => {
+            div.id = ""
+        })
         Gameboard.restart()
         turnOne = true
+        
     })
 
 })()
